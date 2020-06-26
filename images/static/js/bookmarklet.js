@@ -28,7 +28,7 @@
         jQuery('body').append(box_html);
 
         // close event
-        jQuery('#bookmarklet #close').close(function(){
+        jQuery('#bookmarklet #close').click(function(){
             jQuery('#bookmarklet').remove();
         });
 
@@ -38,6 +38,21 @@
                 image_url = jQuery(image).attr('src');
                 jQuery('#bookmarklet .images').append('<a href="#"><img src="'+ image_url + '" /></a>');
             }
+        });
+
+        // when an image is selected open URL with it  
+        jQuery('#bookmarklet .images a').click(function(e){
+            selected_image = jQuery(this).children('img').attr('src');
+
+            // hide bookmarklet
+            jQuery('#bookmarklet').hide();
+
+            // open new window to submit the image
+            window.open(site_url + 'images/create/?url='
+                        + encodeURIComponent(selected_image)
+                        + '&title='
+                        + encodeURIComponent(jQuery('title').text()),
+                        '_blank');
         });
     };
 
@@ -50,8 +65,10 @@
 
         // Create the script and point to Google API
         var script = document.createElement('script');
-        script.src = '//ajax.googleapis.com/ajax/libs/jQuery' +
-                    jquery_version + '/jquery.min.js';
+        // script.src = '//ajax.googleapis.com/ajax/libs/jQuery' +
+        //             jquery_version + '/jquery.min.js';
+        script.src = 'https://code.jquery.com/jquery-' + jquery_version + '.min.js'
+        // script.type = 'application/javascript'
                     
         // Add the script to the 'head' for processing 
         document.head.appendChild(script);
@@ -70,6 +87,7 @@
                 }
             } else {
                 bookmarklet();
-        })();
-    }
-})();
+        }
+    })();
+}
+})()
