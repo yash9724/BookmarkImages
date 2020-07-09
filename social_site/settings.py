@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR =  os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
     'social_django',
     'django_extensions',
     'easy_thumbnails',
+    'actions.apps.ActionsConfig',
     
 ]
 
@@ -155,3 +157,11 @@ SOCIAL_AUTH_TWITTER_SECRET = 'FPvzf15loJXMBWBHtjM6Bbks8L0o9J4UjUI8VM6AEHmtRXig55
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '785068402173-l9vbjhdoqp0bn0072vj3kois77bc1upd.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'cLkOEw3v-aAV4850EkCm23dz'
+
+# to generate absolute url 
+ABSOLUTE_URL_OVERRIDES = {
+    'auth.user': lambda u: reverse_lazy('user_detail', args=[u.username] )
+}
+
+# to output debug info of thumbnails
+THUMBNAIL_DEBUG = True
