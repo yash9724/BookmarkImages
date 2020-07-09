@@ -9,8 +9,8 @@ from common.decorators import ajax_required
 
 from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm
 from .models import Profile, Contact
-from action.utils import create_action
-from action.models import Action
+from actions.utils import create_action
+from actions.models import Action
 
 
 # Create your views here.

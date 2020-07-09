@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from .forms import ImageCreateForm
 from .models import Image
 from common.decorators import ajax_required
-from action.utils import create_action
+from actions.utils import create_action
 
 # Create your views here.
 
